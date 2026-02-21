@@ -245,6 +245,7 @@ body{
   display:none;
   z-index: 999;
 }
+
 .modal.show{ display:block; }
 
 .backdrop{
@@ -252,6 +253,7 @@ body{
   inset:0;
   background: rgba(0,0,0,.55);
   backdrop-filter: blur(6px);
+  z-index: 1;            /* ✅ добавь */
 }
 
 .sheet{
@@ -264,6 +266,7 @@ body{
   border:1px solid rgba(255,255,255,.10);
   box-shadow: var(--shadow);
   overflow:hidden;
+  z-index: 2;            /* ✅ добавь */
 }
 
 .sheetHeader{
@@ -351,4 +354,11 @@ body{
   display:flex;
   gap:8px;
 }
+
 .catRow input{ flex:1; }
+
+body.modalOpen{
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
