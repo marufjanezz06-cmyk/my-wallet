@@ -302,12 +302,15 @@ function renderAll() {
 
 /* ========= Actions ========= */
 function openModal(modal) {
+  document.body.classList.add("modalOpen");
   modal.classList.add("show");
   modal.setAttribute("aria-hidden", "false");
 }
+
 function closeModal(modal) {
   modal.classList.remove("show");
   modal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modalOpen");
 }
 
 function setType(type) {
@@ -490,4 +493,5 @@ el.fileImport.onchange = (e) => {
 };
 
 /* ========= Init ========= */
+
 renderAll();
