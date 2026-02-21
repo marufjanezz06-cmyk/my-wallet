@@ -6,13 +6,17 @@
   <meta name="theme-color" content="#0b0f17" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
   <title>Мой кошелёк</title>
 
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <div class="app">
+
+    <!-- HEADER -->
     <header class="topbar">
       <div class="brand">
         <div class="logo">₸</div>
@@ -23,23 +27,22 @@
       </div>
 
       <div class="topActions">
-        <button class="iconBtn" id="btnExport" title="Экспорт">
-          ⤓
-        </button>
-        <button class="iconBtn" id="btnImport" title="Импорт">
-          ⤒
-        </button>
+        <button class="iconBtn" id="btnExport">⤓</button>
+        <button class="iconBtn" id="btnImport">⤒</button>
         <input id="fileImport" type="file" accept="application/json" hidden />
       </div>
     </header>
 
+    <!-- MAIN CONTENT -->
     <main class="content">
+
       <section class="card hero">
         <div class="heroRow">
           <div>
             <div class="muted">Баланс</div>
             <div class="balance" id="balance">0</div>
           </div>
+
           <div class="monthPick">
             <button class="chip" id="prevMonth">‹</button>
             <button class="chip chipWide" id="pickToday">Этот месяц</button>
@@ -52,10 +55,12 @@
             <div class="muted">Доход</div>
             <div class="pos" id="incomeSum">0</div>
           </div>
+
           <div class="stat">
             <div class="muted">Расход</div>
             <div class="neg" id="expenseSum">0</div>
           </div>
+
           <div class="stat">
             <div class="muted">Операций</div>
             <div class="num" id="txCount">0</div>
@@ -63,11 +68,12 @@
         </div>
 
         <div class="hint" id="hint">
-          Совет появится тут 👌
+          Добавь первую операцию — и я начну считать итоги.
         </div>
       </section>
 
       <section class="row2">
+
         <div class="card">
           <div class="cardTitle">
             <span>Категории</span>
@@ -83,17 +89,28 @@
           </div>
           <div class="list" id="txList"></div>
         </div>
+
       </section>
     </main>
 
+    <!-- BOTTOM BAR -->
     <nav class="bottomBar">
       <button class="navBtn navBtnPrimary" id="addBtn">＋ Добавить</button>
-      <button class="navBtn" id="resetDemo" title="Сбросить всё (осторожно)">Сброс</button>
+      <button class="navBtn" id="resetDemo">Сброс</button>
     </nav>
+
   </div>
 
-  <!-- Modal: Add transaction -->
+  <!-- ===================================== -->
+  <!-- MODAL: ADD TRANSACTION -->
+  <!-- ===================================== -->
+
   <div class="modal" id="modalTx" aria-hidden="true">
+
+    <!-- BACKDROP FIRST (ВАЖНО) -->
+    <div class="backdrop" id="backdropTx"></div>
+
+    <!-- SHEET SECOND -->
     <div class="sheet">
       <div class="sheetHeader">
         <div class="sheetTitle">Новая операция</div>
@@ -101,6 +118,7 @@
       </div>
 
       <div class="form">
+
         <div class="seg">
           <button class="segBtn active" data-type="expense" id="segExpense">Расход</button>
           <button class="segBtn" data-type="income" id="segIncome">Доход</button>
@@ -122,18 +140,26 @@
         </label>
 
         <label class="field">
-          <span>Комментарий (необязательно)</span>
+          <span>Комментарий</span>
           <input id="note" placeholder="например: кофе, такси…" />
         </label>
 
         <button class="bigBtn" id="saveTx">Сохранить</button>
+
       </div>
     </div>
-    <div class="backdrop" id="backdropTx"></div>
   </div>
 
-  <!-- Modal: Categories -->
+  <!-- ===================================== -->
+  <!-- MODAL: MANAGE CATEGORIES -->
+  <!-- ===================================== -->
+
   <div class="modal" id="modalCats" aria-hidden="true">
+
+    <!-- BACKDROP FIRST -->
+    <div class="backdrop" id="backdropCats"></div>
+
+    <!-- SHEET -->
     <div class="sheet">
       <div class="sheetHeader">
         <div class="sheetTitle">Категории</div>
@@ -141,6 +167,7 @@
       </div>
 
       <div class="form">
+
         <label class="field">
           <span>Новая категория</span>
           <div class="inline">
@@ -150,12 +177,9 @@
         </label>
 
         <div class="catsList" id="catsList"></div>
-        <div class="muted small">
-          Совет: не удаляй категории, которые уже используются — лучше переименуй.
-        </div>
+
       </div>
     </div>
-    <div class="backdrop" id="backdropCats"></div>
   </div>
 
   <script src="app.js"></script>
