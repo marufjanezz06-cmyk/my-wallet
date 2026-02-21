@@ -321,6 +321,12 @@ body{
   color: var(--text);
   padding:12px 12px;
   outline:none;
+
+  font-size: 16px;          /* ✅ важно для iPhone */
+  line-height: 1.2;
+}
+input, select, textarea, button {
+  font-size: 16px;         
 }
 .inline{
   display:flex;
@@ -361,4 +367,5 @@ body.modalOpen{
   position: fixed;
   width: 100%;
 }
+
 
