@@ -461,7 +461,11 @@ el.addBtn.onclick = () => {
   setType("expense");
   el.date.value = todayISO();
   openModal(el.modalTx);
-  el.amount.focus();
+
+  setTimeout(() => {
+    el.amount.focus();
+    el.amount.select?.();
+  }, 250);
 };
 el.resetDemo.onclick = resetAll;
 
@@ -495,3 +499,4 @@ el.fileImport.onchange = (e) => {
 /* ========= Init ========= */
 
 renderAll();
+
