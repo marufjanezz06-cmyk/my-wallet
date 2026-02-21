@@ -244,6 +244,7 @@ body{
   inset: 0;
   display:none;
   z-index: 999;
+  isolation: isolate; /* ✅ важно */
 }
 
 .modal.show{ display:block; }
@@ -354,7 +355,6 @@ body{
   display:flex;
   gap:8px;
 }
-
 .catRow input{ flex:1; }
 
 body.modalOpen{
