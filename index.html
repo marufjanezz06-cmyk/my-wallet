@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0f17" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Мой кошелёк</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">₸</div>
+        <div class="titles">
+          <div class="title">Мой кошелёк</div>
+          <div class="subtitle" id="monthLabel">—</div>
+        </div>
+      </div>
+
+      <div class="topActions">
+        <button class="iconBtn" id="btnExport" title="Экспорт">
+          ⤓
+        </button>
+        <button class="iconBtn" id="btnImport" title="Импорт">
+          ⤒
+        </button>
+        <input id="fileImport" type="file" accept="application/json" hidden />
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="card hero">
+        <div class="heroRow">
+          <div>
+            <div class="muted">Баланс</div>
+            <div class="balance" id="balance">0</div>
+          </div>
+          <div class="monthPick">
+            <button class="chip" id="prevMonth">‹</button>
+            <button class="chip chipWide" id="pickToday">Этот месяц</button>
+            <button class="chip" id="nextMonth">›</button>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="muted">Доход</div>
+            <div class="pos" id="incomeSum">0</div>
+          </div>
+          <div class="stat">
+            <div class="muted">Расход</div>
+            <div class="neg" id="expenseSum">0</div>
+          </div>
+          <div class="stat">
+            <div class="muted">Операций</div>
+            <div class="num" id="txCount">0</div>
+          </div>
+        </div>
+
+        <div class="hint" id="hint">
+          Совет появится тут 👌
+        </div>
+      </section>
+
+      <section class="row2">
+        <div class="card">
+          <div class="cardTitle">
+            <span>Категории</span>
+            <button class="miniBtn" id="manageCats">Управлять</button>
+          </div>
+          <div class="chips" id="catChips"></div>
+        </div>
+
+        <div class="card">
+          <div class="cardTitle">
+            <span>Список операций</span>
+            <input class="search" id="search" placeholder="Поиск (коммент/категория)" />
+          </div>
+          <div class="list" id="txList"></div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottomBar">
+      <button class="navBtn navBtnPrimary" id="addBtn">＋ Добавить</button>
+      <button class="navBtn" id="resetDemo" title="Сбросить всё (осторожно)">Сброс</button>
+    </nav>
+  </div>
+
+  <!-- Modal: Add transaction -->
+  <div class="modal" id="modalTx" aria-hidden="true">
+    <div class="sheet">
+      <div class="sheetHeader">
+        <div class="sheetTitle">Новая операция</div>
+        <button class="iconBtn" id="closeTx">✕</button>
+      </div>
+
+      <div class="form">
+        <div class="seg">
+          <button class="segBtn active" data-type="expense" id="segExpense">Расход</button>
+          <button class="segBtn" data-type="income" id="segIncome">Доход</button>
+        </div>
+
+        <label class="field">
+          <span>Сумма</span>
+          <input id="amount" inputmode="decimal" placeholder="например 250" />
+        </label>
+
+        <label class="field">
+          <span>Категория</span>
+          <select id="category"></select>
+        </label>
+
+        <label class="field">
+          <span>Дата</span>
+          <input id="date" type="date" />
+        </label>
+
+        <label class="field">
+          <span>Комментарий (необязательно)</span>
+          <input id="note" placeholder="например: кофе, такси…" />
+        </label>
+
+        <button class="bigBtn" id="saveTx">Сохранить</button>
+      </div>
+    </div>
+    <div class="backdrop" id="backdropTx"></div>
+  </div>
+
+  <!-- Modal: Categories -->
+  <div class="modal" id="modalCats" aria-hidden="true">
+    <div class="sheet">
+      <div class="sheetHeader">
+        <div class="sheetTitle">Категории</div>
+        <button class="iconBtn" id="closeCats">✕</button>
+      </div>
+
+      <div class="form">
+        <label class="field">
+          <span>Новая категория</span>
+          <div class="inline">
+            <input id="newCat" placeholder="например: Дом" />
+            <button class="miniBtn" id="addCat">Добавить</button>
+          </div>
+        </label>
+
+        <div class="catsList" id="catsList"></div>
+        <div class="muted small">
+          Совет: не удаляй категории, которые уже используются — лучше переименуй.
+        </div>
+      </div>
+    </div>
+    <div class="backdrop" id="backdropCats"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
