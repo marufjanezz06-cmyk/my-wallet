@@ -1,4 +1,4 @@
-const CACHE = "my-wallet-cache-v1";
+const CACHE = "my-wallet-cache-v2";
 const ASSETS = ["./", "./index.html", "./styles.css", "./app.js", "./manifest.json"];
 
 self.addEventListener("install", (event) => {
@@ -15,4 +15,5 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((cached) => cached || fetch(event.request))
   );
+
 });
